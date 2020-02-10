@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+{% block body  %}
+
+
+
+
+    <div class="card">
+        <div class="card-header">
+            <h4>{{ 'now'|date("F")}} Sales Statistics</h4>
+        </div>
+        <div class="card-body">
+            {% for p in result %}
+                {% if p.quantite < 25  %}
+                    {{ p.produit.nom }}
+                    <div class="progress mb-2">
+             <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{ p.quantite }}%" aria-valuenow="{{ p.quantite }}" aria-valuemin="0" aria-valuemax="100">{{ p.quantite }}%</div>
+            </div>
+                {% else %}
+                    {% if p.quantite >= 25 and p.quantite <=50%}
+                        {{ p.produit.nom }}
+            <div class="progress mb-2">
+                <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{ p.quantite }}%" aria-valuenow="{{ p.quantite }}" aria-valuemin="0" aria-valuemax="100">{{ p.quantite }}%</div>
+            </div>
+                    {% else %}
+                        {% if p.quantite >= 75 and p.quantite <=90%}
+                            {{ p.produit.nom }}
+                            <div class="progress mb-2">
+                <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{ p.quantite }}%" aria-valuenow="{{ p.quantite }}" aria-valuemin="0" aria-valuemax="100">{{ p.quantite }}%</div>
+            </div>
+                        {% else %}
+                            {{ p.produit.nom }}
+            <div class="progress mb-2">
+                <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{ p.quantite }}%" aria-valuenow="{{ p.quantite }}" aria-valuemin="0" aria-valuemax="100">{{ p.quantite }}%</div>
+            </div> {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg">
+        <div class="card">
+            <div class="card-body">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">{{ 'now'|date("Y")}} Total Profit</div>
+                        <div class="stat-digit">{{profi}} DT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Customer</div>
+                        <div class="stat-digit">{{ cust}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="fa fa-cart-plus text-warning border-warning"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">{{ 'now'|date("M")}} Products sold</div>
+                        <div class="stat-digit">{{ productsold}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

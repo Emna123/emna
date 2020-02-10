@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body  %}
+
+    {{ form_start (form) }}
+    <div style="padding: 2%;">
+    <p style="font-size: 20px;color: black;">Informations Client</p>
+    <p>Nom et Prenom : {{a.idcommande.idpanier.iduser.nom}} {{a.idcommande.idpanier.iduser.prenom}}</p>
+    <p>Tel : {{a.idcommande.idpanier.iduser.tel}} </p>
+    <p>E-mail : {{a.idcommande.idpanier.iduser.email}} </p>
+    <p>Adresse : {{a.idcommande.idpanier.iduser.adr}} </p>
+        <p style="font-size: 20px;color: black;">Information  Commande</p>
+    <p>ID_Commande : # {{a.idcommande.id}} </p>
+    <p>Date_Commande : {{a.idcommande.date |date('d-m-Y') }} </p>
+        <p>Montant payé : {{a.idcommande.total}} DT </p>
+        {% if a.date_livraison > date('now') or a.date_livraison== null %}
+    <div >{{ form_row(form.date_livraison) }} <div style="position: absolute;top:565px;left: 42%;"><button type="submit" class="btn btn-secondary" style="width: 110px"><i class="fa fa-magic" ></i>&nbsp; Modifier</button></div></div>
+{% else %}
+        <p>Date Livraison : {{a.date_livraison |date('d-m-Y') }}</p>
+            <div class="invisible">  {{ form_row(form.date_livraison) }}</div>
+{% endif %}
+    </div>
+    <div class="col-lg">
+    <div class="card">
+    <div class="card-header">
+        <strong class="card-title">Ensemble des produits relative aux commande</strong>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">  Quantité Commandée</th>
+                <th scope="col"> Quantité Disponible</th>
+                <th  scope="col"># id_Produit</th>
+                <th scope="col"> Produit</th>
+                <th scope="col" class="text-center"> Libellé</th>
+                <th  scope="col">Prix</th>
+                <th  scope="col">Total</th>
+
+                {% for p in a.idcommande.idpanier.qnt_acom %}
+            <tr>
+                <td scope="row" class="text-center">{{p.qteproduit}}</td>
+                <td scope="row" class="text-center">{{p.idproduit.qte}}</td>
+                <td scope="row" class="text-center"># {{p.idproduit.id}}</td>
+                <td><img  src="/images/adminis/{{ p.idproduit.img }}" alt="Card image cap"  style="width: 100px;height: 100px;padding-left: 0px" ></td>
+                <td scope="row" class="text-center">{{p.idproduit.nom}}</td>
+                <td scope="row" class="text-center">{{p.idproduit.prix}} DT</td>
+                <td scope="row" >{{p.idproduit.prix * p.qteproduit}} DT</td>
+                {% endfor %}
+            <tr scope="row"><td colspan="7" class="text-center" style="background-color: #868e96">Montant payé : {{a.idcommande.total}}  DT</td></tr>
+            </tr>
+
+            </thead>
+            <tbody>
+
+
+
+
+
+
+        </tr>
+
+
+        </tbody>
+        </table>
+
+    </div>
+    </div>
+</div>
+    <div style="position: fixed;left: 91.5%;top: 35%"><a href="{{ path('com') }}" ><button type="button" class="btn btn-dark" style="width: 117px"><i class="fa fa-hand-o-left" ></i>&nbsp;Retour</button></a></div>
+
+    <div style="position: fixed;left: 91.5%;top: 27%"><a href="{{ path('fact',{'id':a.id})}}" ><button type="button" class="btn btn-secondary" style="width: 117px"><i class="fa fa-paperclip" ></i>&nbsp;Facture</button></a></div>
+
+    {{ form_end(form)}}
+{% endblock %}

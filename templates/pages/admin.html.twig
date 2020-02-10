@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+ {% block bodt  %}
+
+
+     <button class="search-trigger"><i class="fa fa-search"></i></button>
+
+     <div class="form-inline">
+         <form class="search-form mr-sm-2" method="post" >
+             <button class="search-close" type="button"><i class="fa fa-close"></i></button>
+          {{ form(form) }}<span style="padding-top: 2%;"> <button class="search-close invisible" type="submit"><i class="fa fa-close"></i></button></span>
+         </form>
+     </div>
+
+ {% endblock %}
+{% block body %}
+<style>.md-avatar.size-4 {
+        width: 110px;
+        height: 110px;
+    }
+    </style>
+    <div class="content mt-3 ">
+    <div class="animated fadeIn">
+    <div class="col">
+    {% if app.request.method == 'POST' %}
+
+
+
+
+
+                   {% if properties |length == 0  %}
+                    <h1>aucune</h1
+                    {% else %}
+                    {% for property in properties %}
+
+
+
+
+
+
+                        <div class="col-md-4  " >
+                            <div class="card">
+                                <div class="card-header">
+                                    <i class="fa fa-user"></i><strong class="card-title pl-2">Profile Card</strong>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mx-auto d-block">
+                                        {% if   property.imageName %}
+
+                                        <img  class="md-avatar rounded-circle size-4 mx-auto d-block" src="/images/adminis/{{property.imageName}}" alt="Card image cap" >
+{% endif %}
+                                    </div>
+
+                                    <h5 class="text-sm-center mt-2 mb-1">{{ property.nom}} {{ property.prenom}}</h5>
+                                    <div class="text-sm-center"><i class="fa ti-email"></i> <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new">{{ property.username}}</a></div>
+                                    {% for a in super %}
+                                        {% if   property.username == a.username and a.password  == property.password  %}
+                                            <div class="text-sm-center"style="color: #999999;">Classement Super-Admin</div>
+                                        {% else %}
+                                            <div class="text-sm-center" style="color: #999999;"></i>Classement Admin</div>
+
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </div>
+                                <hr>
+                                <div class="card-text text-sm-center">
+                                    {% for a in super %}
+                                    {% if   app.user.username == a.username and a.password  == app.user.password  %}
+                                    <a href="{{ path('deleteadmi',{'id':property.id}) }}"> <button type="button" class="btn btn-primary"style="width: 119px;"><i class="fa fa-minus-circle"></i>&nbsp; Supprimer</button></a>
+                                    {% endif %}
+                                        {% endfor %}
+                                    <a href="{{ path('admindetail',{'id':property.id})}}">   <button type="button" class="btn btn-secondary"style="width: 115px;"><i class="fa fa-eye"></i>&nbsp; Detail</button></a>
+<br><br>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                      {% endfor %}
+
+                     {% endif %}
+
+    {% else %}
+
+
+        {% for property in properties %}
+            <div class="col-md-4  ">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-user"></i><strong class="card-title pl-2">Profil</strong>
+                    </div>
+                    <div class="card-body ">
+                        <div class="mx-auto d-block">
+                            {% if   property.imageName %}
+
+                                <img  class="md-avatar rounded-circle size-4 mx-auto d-block" src="/images/adminis/{{property.imageName}}" alt="Card image cap" >
+                            {% endif %}
+
+
+                            <h5 class="text-sm-center mt-2 mb-1">{{ property.nom}} {{ property.prenom}}</h5>
+                            <div class="text-sm-center"><i class="fa ti-email"></i> <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new">{{ property.username}}</a></div>
+        {% for a in super %}
+            {% if   property.username == a.username and a.password  == property.password  %}
+                <div class="text-sm-center"style="color: #999999;">Classement Super-Admin</div>
+            {% else %}
+                <div class="text-sm-center" style="color: #999999;"></i>Classement Admin</div>
+
+            {% endif %}
+            {% endfor %}
+                </div>
+                        <hr>
+                        <div class="card-text text-sm-center">
+                            {% for a in super %}
+                            {% if   app.user.username == a.username and a.password  == app.user.password  %}
+                                <a href="{{ path('deleteadmi',{'id':property.id}) }}"> <button type="button" class="btn btn-primary"style="width: 119px;"><i class="fa fa-minus-circle"></i>&nbsp; Supprimer</button></a>
+                            {% endif %}
+                            {% endfor %}
+                            <a href="{{ path('admindetail',{'id':property.id})}}">   <button type="button" class="btn btn-secondary"style="width: 115px;"><i class="fa fa-eye"></i>&nbsp; Detail</button></a>
+
+                            <br><br>
+                        </div>
+                    </div>
+                </div></div>
+
+
+
+        {% endfor %}
+
+
+    {% endif %}
+
+    </div></div></div>
+
+{% endblock %}

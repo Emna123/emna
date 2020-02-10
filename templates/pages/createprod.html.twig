@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body  %}
+
+
+
+
+    {{ form_start (form) }}
+
+    <p class="text-muted" style="font-size: 20px;margin-top: -1%;padding-bottom: 1%;">Les coordonnées de {{ form.vars.value.nom }} :
+        {% if form.vars.value.img is not null %}
+            &nbsp;&nbsp; <img   src="/images/adminis/{{ form.vars.value.img}}" style="position: absolute ;left: 70%;top:35%;width: 250px;height: 250px;"/>
+        {% endif %}
+    </p>
+
+    <div class="row">
+            <div class="col-xs-8 col-md-6"> {{ form_row(form.nom) }}</div>
+    </div><div class="row">
+            <div class="col-xs-8 col-md-6">{{ form_row(form.prix) }}</div>
+</div>
+    <div class="row">
+        <div class="col-xs-8 col-md-6">{{ form_row(form.qnt_init) }}</div>
+    </div>
+    <div class="row">
+            <div class="col-xs-8 col-md-6">{{ form_row(form.qte) }}</div>
+</div><div class="row">
+
+
+            <div class="col-xs-8 col-md-6">{{ form_row(form.imageFile) }}</div >
+
+</div>
+
+
+
+
+        </div> </div>
+    <div  style="position: absolute;left: 80%; top: 80%;"> <button type="submit" class="btn btn-secondary" style="width: 110px"><i class="fa fa-magic" ></i>&nbsp; Modifier</button></div>
+    <div style="position: absolute;left: 71%; top: 80%;"><a href="{{ path('pro') }}" ><button type="button" class="btn btn-dark" style="width: 110px"><i class="fa fa-hand-o-left" ></i>&nbsp;Retour</button></a></div>
+    </div>
+    {{ form_end(form)}}
+{% endblock %}

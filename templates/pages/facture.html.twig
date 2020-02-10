@@ -1,0 +1,96 @@
+
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sufee Admin - HTML5 Admin Template</title>
+    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+
+
+</head>
+<body>
+
+
+
+<div class="border" style="width: 50%;position: absolute;left: 14%;">
+<div style="color: #0c5460; background-color:#0c5460 ">kkkk</div>
+    <div style="padding: 20px">
+    <h5 style="color: #454545;font-size: 25px;">FACTURE</h5>
+    <div style="position: relative;top: 70%;left: 80%;" ><img style="width: 85px;height: 85px;" src='{{ asset('build/images/1.png') }}'></div>
+<div>
+
+        <div>
+ <h6 style="color: #808080;">Fazet Brand</h6>
+    <p style="color: #808080;font-size: 10px;">m.me/designbyfaten<br>97, Av. Habib Bourguiba <br>– Ariana 2080 – Tunisie<br>+218 91 335 1801</p>
+</div>
+        <div style="position: absolute;left: 40%;top: 169px;">
+       <p style="color: #C0C0C0;font-size: 13px;"> DESTINATAIRE</p>
+            <h6 style="color: #808080;">Acheteur SA</h6>
+            <p style="color: #808080;font-size: 10px;">{{a.idcommande.idpanier.iduser.email}}<br>{{a.idcommande.idpanier.iduser.adr}} </p>
+        </div>
+</div><br><br><hr>
+        <div>
+
+            <pre style="color: #808080;font-size: 10px;">Nombre       FN{{a.idcommande.id}}<br>Date         {{ a.idcommande.date |date('Y-m-d') }}<br>Termes       En Raison De La Réception
+            </pre>
+
+
+        </div>
+        <div class="col-lg">
+
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-#0c5460" style="background-color:#0c5460; ">
+                        <tr>
+                            <th scope="col" style="color: white;font-weight: normal;">Produit</th>
+                            <th  scope="col" style="color: white;font-weight: normal;">Prix</th>
+                            <th scope="col" style="color: white;font-weight: normal;">Quantité</th>
+                            <th scope="col" style="color: white;font-weight: normal;">Montant</th>
+                        </tr>
+
+                        </thead>
+                        <tbody>
+                        {% for p in a.idcommande.idpanier.qnt_acom %}
+                        <tr>
+                            <td scope="row" >{{p.idproduit.nom}}</td>
+                            <td scope="row" >{{p.idproduit.prix}} DT</td>
+                            <td scope="row" >&nbsp;&nbsp;&nbsp;&nbsp;{{p.qteproduit}}</td>
+                            <td scope="row" >{{p.idproduit.prix * p.qteproduit}} DT</td>
+                        </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    <div>
+        <pre style="color: #808080;font-size: 10px;position: relative;left: 50%;">Total     {{a.idcommande.total}}  DT</pre>
+    </div>
+<hr><p style="color: #808080;font-size: 10px;position: relative;left: 55%;">Brand Your Life, Your office, Your House, Your Gift, Your Clothes</p>
+    <br><br><div style="color: #0c5460; background-color:#0c5460 ">kkkk</div>
+
+</div>
+
+</div>
+<div style="position: fixed;left: 92%;top: 50%"><a href="{{ path('com') }}" ><button type="button" class="btn btn-secondary" style="width: 110px"><i class="fa fa-arrow-circle-left" ></i>&nbsp;Retour</button></a></div>
+
+</body></html>

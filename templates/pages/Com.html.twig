@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+ {% block bodt  %}
+
+
+     <button class="search-trigger"><i class="fa fa-search"></i></button>
+
+     <div class="form-inline">
+         <form class="search-form mr-sm-2" method="post" >
+             <button class="search-close" type="button"><i class="fa fa-close"></i></button>
+             {{ form(form) }}<span style="padding-top: 2%;"> <button class="search-close invisible" type="submit"><i class="fa fa-close"></i></button></span>
+         </form>
+     </div>
+
+ {% endblock %}
+{% block body %}
+
+
+    <style>.md-avatar.size-4 {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+
+    <div class="col-lg">
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">Ensemble des Commande</strong>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th  scope="col"># id</th>
+                        <th scope="col"> Date</th>
+                        <th scope="col"> Client</th>
+                        <th scope="col"> Livraison</th>
+                        <th  scope="col">Total</th>
+                        <th  scope="col">Statut</th>
+                        <th  scope="col" class="text-center">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if app.request.method == 'POST' %}
+                    {% if properties |length == 0  %}
+                    <tr><td >aucun produit trouvé</td></tr>
+                    {% else %}
+                        {% for property in properties %}
+
+                            <tr>
+                                <th scope="row"># {{property.idcommande.id}}</th>
+                                <td scope="row">{{ property.idcommande.date|date('d-m-Y') }}</td>
+
+                                <td scope="row">{{property.idcommande.idpanier.iduser.email}}</td>
+                                {% if property.date_livraison !=null  %}
+                                    <td scope="row"> {{ property.date_livraison is empty ? "" : property.date_livraison|date("d/m/Y") }}</td>
+                                {% else %}
+                                    <td >------------</td>
+
+                                {% endif %}
+                                <td scope="row"> {{property.idcommande.total}} DT</td>
+                                {% if property.date_livraison ==null  %}
+                                    <td scope="row"  class="text-center"><i class="fa fa-minus-square" style="color: red;"></i> </td>
+                                    <td class="text-center"><a href="{{ path('comdetail',{'id':property.id})}}">   <button type="button" class="btn btn-secondary " style="width: 120px"><i class="fa fa-eye"></i>&nbsp; Detail</button></a></td>
+                                {% else %}
+                                    {% if property.date_livraison > date('now')  %}
+                                        <td scope="row" class="text-center"> <i class="fa  fa-square" style="color: dodgerblue;"></i></td>
+
+                                        <td class="text-center"><a href="{{ path('comdetail',{'id':property.id})}}">   <button type="button" class="btn btn-secondary " style="width: 120px"><i class="fa fa-eye"></i>&nbsp; Detail</button></a></td>
+                                    {% else %}
+                                        <td scope="row" class="text-center"> <i class="fa fa-check-square" style="color: darkgreen;"></i> </td>
+                                        <td scope="row" class="text-center"> <a href="{{ path('deletecom',{'id':property.id}) }}"> <button type="button" class="btn btn-danger" style="width: 120px"><i class="fa fa-minus-circle"></i>&nbsp; Supprimer</button></a>
+
+                                            <a href="{{ path('comdetail',{'id':property.id})}}">   <button type="button" class="btn btn-secondary " style="width: 120px"><i class="fa fa-eye"></i>&nbsp; Detail</button></a></td>
+
+                                    {% endif %}
+                                {% endif %}
+
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    {% else %}
+                    {% for property in properties %}
+
+                        <tr>
+                            <th scope="row"># {{property.idcommande.id}}</th>
+                            <td scope="row">{{ property.idcommande.date|date('d-m-Y') }}</td>
+
+                            <td scope="row">{{property.idcommande.idpanier.iduser.email}}</td>
+                            {% if property.date_livraison !=null  %}
+                                <td scope="row"> {{ property.date_livraison is empty ? "" : property.date_livraison|date("d/m/Y") }}</td>
+                            {% else %}
+                                <td >------------</td>
+
+                            {% endif %}
+                            <td scope="row"> {{property.idcommande.total}} DT</td>
+                            {% if property.date_livraison ==null  %}
+                                <td scope="row"  class="text-center"><i class="fa fa-minus-square" style="color: red;"></i> </td>
+                                <td class="text-center"><a href="{{ path('comdetail',{'id':property.id})}}">   <button type="button" class="btn btn-secondary " style="width: 120px"><i class="fa fa-eye"></i>&nbsp; Detail</button></a></td>
+                            {% else %}
+                                {% if property.date_livraison > date('now')  %}
+                                    <td scope="row" class="text-center"> <i class="fa  fa-square" style="color: dodgerblue;"></i></td>
+
+                                    <td class="text-center"><a href="{{ path('comdetail',{'id':property.id})}}">   <button type="button" class="btn btn-secondary " style="width: 120px"><i class="fa fa-eye"></i>&nbsp; Detail</button></a></td>
+                                {% else %}
+                                    <td scope="row" class="text-center"> <i class="fa fa-check-square" style="color: darkgreen;"></i> </td>
+                                    <td scope="row" class="text-center"> <a href="{{ path('deletecom',{'id':property.id}) }}"> <button type="button" class="btn btn-danger" style="width: 120px"><i class="fa fa-minus-circle"></i>&nbsp; Supprimer</button></a>
+
+                                        <a href="{{ path('comdetail',{'id':property.id})}}">   <button type="button" class="btn btn-secondary " style="width: 120px"><i class="fa fa-eye"></i>&nbsp; Detail</button></a></td>
+
+                                {% endif %}
+                            {% endif %}
+
+                        </tr>
+                    {% endfor %}
+                    {% endif %}
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

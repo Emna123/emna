@@ -1,0 +1,230 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sufee Admin - HTML5 Admin Template</title>
+    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="{{ asset('build/vendors/bootstrap/dist/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('build/vendors/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('build/vendors/themify-icons/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{ asset('build/vendors/flag-icon-css/css/flag-icon.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('build/vendors/selectFX/css/cs-skin-elastic.css')}}">
+    <link rel="stylesheet" href="{{ asset('build/vendors/jqvmap/dist/jqvmap.min.css')}}">
+
+
+    <link rel="stylesheet" href="{{ asset('build/assets/css/style.css')}}">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body >
+
+
+<!-- Left Panel -->
+
+<aside id="left-panel" class="left-panel" >
+    <nav class="navbar navbar-expand-sm navbar-default">
+
+        <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="./"><img src="{{ asset('build/images/1.png')}}" alt="Logo" style="height: 81px;width: 100px"></a>
+        </div>
+
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{{ path('acc') }}"> <i class="menu-icon fa fa-dashboard"></i>Accueil !</a>
+                </li>
+
+                <h3 class="menu-title">ADMINISTRATION</h3><!-- /.menu-title -->
+                {% for a in super %}
+                    {% if   app.user.username == a.username and a.password  == app.user.password  %}
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Ouvriers</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-eye"></i><a href="{{path('admin')}}"> Ouvriers  Disponibles</a></li>
+                        <li><i class="fa fa-id-badge"></i><a href="{{ path('ajout') }}">Ajouter Ouvrier</a></li>
+                    </ul>
+                </li>
+
+                    {% else %}
+                <li class="menu-item-has-children">
+                    <a href="{{path('admin')}}"><i class="menu-icon fa fa-eye"></i> Admin</a></li>
+
+                    {% endif %}
+                {% endfor %}
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gift"></i>Produits</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-table"></i><a href="{{ path('pro') }}">Produits Disponibles</a></li>
+                        <li><i class="fa  fa-plus-square"></i><a href="{{ path('ajoutprod') }}">Ajouter Produit</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="menu-item-has-children">
+                    <a href="{{ path('com') }}" > <i class="menu-icon fa fa-th"></i>Consulter Commande</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</aside>
+
+<!-- Left Panel -->
+
+<!-- Right Panel -->
+
+<div id="right-panel" class="right-panel">
+
+    <!-- Header-->
+    <header id="header" class="header">
+
+        <div class="header-menu">
+
+            <div class="col-sm-7">
+                <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                <div class="header-left">
+
+                        {% block bodt  %}{% endblock %}
+
+                    <div class="dropdown for-notification">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bell"></i>
+                            <span class="count bg-danger">{{ indice }}</span>
+                        </button>
+
+                        <div class="dropdown-menu" aria-labelledby="notification">
+                            <p class="red">Vous avez {{ indice}} notifications</p>
+
+                            {% for property in pro %}
+
+
+
+                                {% if property.date_livraison !=null and property.date_livraison <= date('now')  %}
+                                    <a class="dropdown-item media bg-flat-color-5" href="{{ path('comdetail',{'id':property.id})}}">
+                                        <i class="fa fa-check"></i>
+                                        <p>ID # {{property.id}} : Commande envoyer.</p>
+                                    </a>
+                                {% else %}
+                                    {% if property.date_livraison == null  %}
+                                        <a class="dropdown-item media bg-flat-color-4" href="{{ path('comdetail',{'id':property.id})}}">
+                                            <i class="fa fa-info"></i>
+                                            <p>ID # {{property.id}} : Commande non consulter.</p>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-5">
+                <div class="user-area dropdown float-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="user-avatar rounded-circle " src= "/images/adminis/{{ app.user.imageName}}"/>
+
+                    </a>
+
+                    <div class="user-menu dropdown-menu">
+                        <a class="nav-link" href="{{ path('admindetail',{'id':app.user.id})}}"><i class="fa fa-user"></i> My Profile</a>
+
+
+
+                        <a class="nav-link" href="{{path('logout')}}"><i class="fa fa-power-off"></i> Logout</a>
+                    </div>
+                </div>
+
+                <div class="language-select dropdown" id="language-select">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
+                        <i class="flag-icon flag-icon-tn"></i>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </header><!-- /header -->
+    <!-- Header-->
+
+    <div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+                <div class="page-title">
+                    <h1>Bonjour {{ app.user.prenom }}  <i class="ti-face-smile"></i></h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li class="active">{{ 'now'|date("m/d/yy")}}  {{ indice }} </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content mt-3">
+
+        {% block body  %}{% endblock %}
+    </div> <!-- .content -->
+</div><!-- /#right-panel -->
+
+<!-- Right Panel -->
+
+<script src="{{ asset('build/vendors/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{ asset('build/vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+<script src="{{ asset('build/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{ asset('build/assets/js/main.js')}}"></script>
+
+
+<script src="{{ asset('build/vendors/chart.js/dist/Chart.bundle.min.js')}}"></script>
+<script src="{{ asset('build/assets/js/dashboard.js')}}"></script>
+<script src="{{ asset('build/assets/js/widgets.js')}}"></script>
+<script src="{{ asset('build/vendors/jqvmap/dist/jquery.vmap.min.js')}}"></script>
+<script src="{{ asset('build/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js')}}"></script>
+<script src="{{ asset('build/vendors/jqvmap/dist/maps/jquery.vmap.world.js')}}"></script>
+<script>
+    (function($) {
+        "use strict";
+
+        jQuery('#vmap').vectorMap({
+            map: 'world_en',
+            backgroundColor: null,
+            color: '#ffffff',
+            hoverOpacity: 0.7,
+            selectedColor: '#1de9b6',
+            enableZoom: true,
+            showTooltip: true,
+            values: sample_data,
+            scaleColors: ['#1de9b6', '#03a9f5'],
+            normalizeFunction: 'polynomial'
+        });
+    })(jQuery);
+</script>
+
+</body>
+
+</html>

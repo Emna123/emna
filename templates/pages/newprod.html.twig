@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body  %}
+
+    {{ form_start (form) }}
+
+    <div class="col">
+        <div class="container mt-100 mt-sm-5">
+
+            <div class="col-md-4">{{ form_row(form.nom) }}</div>
+            <div class="col-md-4">{{ form_row(form.qnt_init) }}</div>
+            <div class="col-md-4">{{ form_row(form.prix) }}</div>
+            <div class="col-md-4">{{ form_row(form.imageFile) }}</div>
+            <div class="col-md-4 invisible">{{ form_row(form.qte) }}</div>
+
+
+
+
+        </div>
+    </div>
+    <div style="position: absolute;top:315px;left: 49%;">
+        <button type="reset" class="btn btn-outline-secondary btn-sm" style="width: 303px;padding: 7px;"><i class="fa ti-reload" ></i>&nbsp;&nbsp;Annuler</button> </div>
+    <div style="position: absolute;top:315px;left: 73.5%;">
+
+    <button type="submit" class="btn btn-secondary" style="width: 148px"><i class="fa fa-magic" ></i>&nbsp; Ajouter</button>
+   <a href="{{ path('pro') }}" ><button type="button" class="btn btn-dark" style="width: 148px"><i class="fa fa-hand-o-left" ></i>&nbsp;Retour</button></a>
+    </div>
+
+    {{ form_end (form) }}
+
+{% endblock %}
