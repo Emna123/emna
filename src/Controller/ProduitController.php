@@ -118,10 +118,9 @@ class ProduitController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit) ;
             $em->flush();
-            echo "<script>
-         alert('Produit Ajouter')
 
-         </script>";
+            $this->addFlash('success', 'Produit Ajouter');
+
             return $this->redirect($_SERVER['HTTP_REFERER']);
         }
 
@@ -141,12 +140,11 @@ class ProduitController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->remove($p);
         $em->flush();
-        echo "<script>
-         alert('Produit Supprimer')
 
-         </script>";
+        $this->addFlash('success', 'Produit Supprimer');
 
-       return $this->redirect($_SERVER['HTTP_REFERER']);
+
+        return $this->redirect($_SERVER['HTTP_REFERER']);
 
 
     }
@@ -181,10 +179,7 @@ class ProduitController extends AbstractController
         if($form->isSubmitted() && $form->isValid() ){
             $em = $this->getDoctrine()->getManager();
             $em->flush();
-            echo "<script>
-         alert('Données Modifier')
-
-         </script>";
+            $this->addFlash('success', 'Produit Modifier');
 
             return $this->redirect($_SERVER['HTTP_REFERER']);
         }

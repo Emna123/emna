@@ -31,7 +31,7 @@ class Panier
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Useraccount", inversedBy="iduser",cascade={"all"}, fetch="EAGER")
+     * @ORM\OneToOne(targetEntity="App\Entity\Useraccount",cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     public $iduser;

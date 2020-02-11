@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="807e338d-f15b-40e7-b04a-8dc8159e999b" name="Default Changelist" comment="" />
+    <list default="true" id="807e338d-f15b-40e7-b04a-8dc8159e999b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/adminis/5e3e974eaa97b163634097.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/adminis/5e3e9764551cf840668664.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdminiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ComController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ComController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProduitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProduitController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Livraison.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Livraison.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Panier.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Panier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Produit.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Produit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Useraccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Useraccount.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/AdminiType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/AdminiType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ProduitType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ProduitType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/Com.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/Com.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/admin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/admin.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/create.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/createprod.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/createprod.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/detailcom.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/detailcom.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/newprod.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/newprod.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/produit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/produit.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,6 +88,9 @@
   </component>
   <component name="FavoritesManager">
     <favorites_list name="boutique" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -180,6 +205,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1WKyMrlYryMykIcqiOnnoEf8QT6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -237,7 +263,8 @@
       <workItem from="1580717904527" duration="133069000" />
       <workItem from="1581154621798" duration="21007000" />
       <workItem from="1581239912521" duration="3000" />
-      <workItem from="1581239984244" duration="22956000" />
+      <workItem from="1581239984244" duration="26596000" />
+      <workItem from="1581407262374" duration="8601000" />
     </task>
     <servers />
   </component>
@@ -321,10 +348,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="392" y="6" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1366.728@0.0.1366.728" timestamp="1580415441487" />
-    <state x="384" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1581239989425">
+    <state x="384" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1581407483099">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="384" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1581239989425" />
+    <state x="384" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1581407483099" />
     <state x="92" y="92" width="1182" height="544" key="dock-window-1" timestamp="1579953207715">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -476,7 +503,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/templates/pages/Com.html.twig</url>
-          <line>46</line>
+          <line>58</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

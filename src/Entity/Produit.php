@@ -83,12 +83,18 @@ class Produit
      */
     public $qnt_init;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Favoris", mappedBy="idproduit")
+     */
+    private $favoris;
+
 
 
 
     public function __construct()
     {
         $this->idproduit = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
     }
 
 
@@ -269,6 +275,34 @@ class Produit
     public function setQntInit(?int $qnt_init): self
     {
         $this->qnt_init = $qnt_init;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Favoris[]
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Favoris $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+            $favori->addIdproduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Favoris $favori): self
+    {
+        if ($this->favoris->contains($favori)) {
+            $this->favoris->removeElement($favori);
+            $favori->removeIdproduit($this);
+        }
 
         return $this;
     }

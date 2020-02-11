@@ -32,7 +32,7 @@ class AdminiType extends AbstractType
             ->add('tel',TelType::class,['label'=>'Tel : '])
 
             ->add('lieu',TextareaType::class, ['label'=>'Lieu : '])
-            ->add('imageFile',FileType::class,['label'=>'Image : ','required'=>false])
+            ->add('imageFile',FileType::class,['label'=>'Image : ','required'=>true])
 
            ->add('password', RepeatedType::class, [
                'type' => PasswordType::class,

@@ -15,7 +15,7 @@ class ProduitType extends AbstractType
         $builder
             ->add('nom',null, ['label'=>'Libellé : '])
             ->add('qte',null, ['label'=>'Quantité Restante: '])
-            ->add('imageFile',FileType::class,['label'=>'Image : ','required'=>false])
+            ->add('imageFile',FileType::class,['label'=>'Image : ','required'=>true])
             ->add('prix',null, ['label'=>'Prix : '])
             ->add('qnt_init',null, ['label'=>'Quantité Initiale: '])
 

@@ -58,6 +58,11 @@ class Useraccount
      */
     private $password;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Favoris", mappedBy="iduser", cascade={"persist", "remove"})
+     */
+    private $favoris;
+
 
 
     public function __construct()
@@ -182,6 +187,24 @@ class Useraccount
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getFavoris(): ?Favoris
+    {
+        return $this->favoris;
+    }
+
+    public function setFavoris(?Favoris $favoris): self
+    {
+        $this->favoris = $favoris;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newIduser = null === $favoris ? null : $this;
+        if ($favoris->getIduser() !== $newIduser) {
+            $favoris->setIduser($newIduser);
+        }
 
         return $this;
     }

@@ -189,7 +189,7 @@ foreach ( $properties  as $p)
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-
+            $this->addFlash('success', 'Date Livraison Modifier');
             return $this->redirect($_SERVER['HTTP_REFERER']);
         }
 
@@ -230,12 +230,9 @@ foreach ( $properties  as $p)
 $em->remove($p->getIdcommande());
 $em->remove($p);
         $em->flush();
+        $this->addFlash('success', 'Commande Supprimer');
 
 
-        echo "<script>
-         alert('Produit Supprimer')
-
-         </script>";
         return $this->redirect($_SERVER['HTTP_REFERER']);
 
 

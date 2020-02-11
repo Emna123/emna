@@ -122,11 +122,9 @@ if($properties[0]==null){$properties=null;}
             $em = $this->getDoctrine()->getManager();
             $em->persist($admini) ;
             $em->flush();
-            echo "<script>
-         alert('Admin Ajouter')
 
-         </script>";
 
+            $this->addFlash('success', 'Admin Ajouter');
 
             return $this->redirect($_SERVER['HTTP_REFERER']);
 
@@ -157,10 +155,8 @@ if($properties[0]==null){$properties=null;}
         $em = $this->getDoctrine()->getManager();
         $em->remove($p);
         $em->flush();
-        echo "<script>
-         alert('Admin supprimer')
 
-         </script>";
+        $this->addFlash('success', 'Admin supprimer');
 
 
       return $this->redirect($_SERVER['HTTP_REFERER']);
@@ -190,10 +186,9 @@ public function detail(Admini $a,Request $request,LivraisonRepository $repositor
        $em = $this->getDoctrine()->getManager();
 
        $em->flush();
-       echo "<script>
-         alert('Admin supprimer');
 
-         </script>";
+       $this->addFlash('success', 'Coordonnées Modifier');
+
 
        return $this->redirect($_SERVER['HTTP_REFERER']);
    }
